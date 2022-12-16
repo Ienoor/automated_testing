@@ -1,6 +1,6 @@
 from base_classes.response import Response
 from configuration import SERVICE_URL
-from schemas.post import POST_SCHEMA
+from schemas.post import Post
 
 
 def test_getting_code_status():
@@ -12,5 +12,4 @@ def test_post_count():
 
 
 def test_data_validation():
-    Response(SERVICE_URL).validate_data(POST_SCHEMA)
-
+    Response(SERVICE_URL).validate_data(Post)

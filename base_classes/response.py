@@ -1,5 +1,4 @@
 import requests
-from jsonschema import validate
 
 from enums.global_enams import GlobalErrorMassage
 
@@ -11,9 +10,9 @@ class Response:
     def validate_data(self, schema):
         if isinstance(self.response.json(), list):
             for item in self.response.json():
-                validate(item, schema)
+                schema.parse_obj(item)
         else:
-            validate(self.response, schema)
+            schema.parse_obj(self.response.json())
 
     def assert_status_code(self, code):
         if isinstance(code, list):
