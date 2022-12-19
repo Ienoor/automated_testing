@@ -3,7 +3,7 @@ from configuration import SERVICE_URL
 from schemas.user import User
 
 
-def test_getting_code_status():
+def test_getting_code_status(say_hello):
     Response(SERVICE_URL).assert_status_code(200)
 
 
