@@ -1,6 +1,6 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 
-from enums.global_enams import Gender, Status
+from enums.global_enams import Gender, Status, UserErrors
 
 
 class User(BaseModel):
@@ -9,3 +9,10 @@ class User(BaseModel):
     email: str
     gender: Gender
     status: Status
+
+    @validator('email')
+    def email_address_verification(cls, email):
+        if '@' in email:
+            return email
+        else:
+            raise ValueError(UserErrors.WRONG_EMAIL.value)
