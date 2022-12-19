@@ -4,12 +4,8 @@ from enums.global_enams import GlobalErrorMassage
 
 
 class Response:
-    def __init__(self, url, data=None):
-        self.data = data
-        if self.data is None:
-            self.response = requests.get(url)
-        else:
-            self.response = requests.get(url)
+    def __init__(self, url):
+        self.response = requests.get(url)
 
     def validate_data(self, schema, data=None):
         if data is None:
@@ -31,5 +27,5 @@ class Response:
         else:
             assert self.response.status_code == code, GlobalErrorMassage.WRONG_STATUS_CODE.value
 
-    def assert_post_count(self, count):
-        assert len(self.response.json()) == count, GlobalErrorMassage.WRONG_ELEMENT_COUNT.value
+    def assert_post_count(self, count, data=None):
+        assert len(self.response.json().get(data)) == count, GlobalErrorMassage.WRONG_ELEMENT_COUNT.value
