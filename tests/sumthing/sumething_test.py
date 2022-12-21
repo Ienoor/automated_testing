@@ -3,6 +3,7 @@ import pytest
 from Classes.response import Response
 
 
+@pytest.mark.development
 def test_getting_code_status(get_users):
     Response(get_users).assert_status_code(200)
 
