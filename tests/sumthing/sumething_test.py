@@ -1,3 +1,5 @@
+import pytest
+
 from Classes.response import Response
 
 
@@ -5,6 +7,11 @@ def test_getting_code_status(get_users):
     Response(get_users).assert_status_code(200)
 
 
-def test_post_count(get_users, count=10):
-    Response(get_users).assert_post_count(count, 'data')
-
+@pytest.mark.parametrize('first_number, second_number, result', [
+    (1, 2, 3),
+    (-1, 2, 1),
+    (-1, -2, -3),
+    ('b', 'b', None),
+])
+def test_calculate(first_number, second_number, result, calculate):
+    assert calculate(first_number, second_number) == result
