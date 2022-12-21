@@ -4,8 +4,8 @@ from enums.global_enams import GlobalErrorMassage
 
 
 class Response:
-    def __init__(self, url):
-        self.response = requests.get(url)
+    def __init__(self, response):
+        self.response = response
 
     def validate_data(self, schema, data=None):
         if data is None:

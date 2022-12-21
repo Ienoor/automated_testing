@@ -1,6 +1,9 @@
 import pytest
+import requests
+
+from configuration import SERVICE_URL
 
 
-@pytest.fixture()
-def say_hello():
-    print('Hello')
+@pytest.fixture
+def get_users():
+    return requests.get(SERVICE_URL)
